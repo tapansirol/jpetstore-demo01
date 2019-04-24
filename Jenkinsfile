@@ -8,6 +8,14 @@ node{
       bat 'mvn clean package'
     }
   }
+	stage('Jacoco Analysis'){
+		step([$class: 'JacocoPublisher', 
+      			execPattern: 'target/*.exec',
+      			classPattern: 'target/classes',
+      			sourcePattern: 'src/main/java',
+      			exclusionPattern: 'src/test*'
+		])
+	}
 	
 //	stage('SonarQube Analysis'){
 //		def mvnHome = tool name : 'MVN_Local', type:'maven'
