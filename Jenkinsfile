@@ -1,6 +1,6 @@
 node{
   stage ('cloning the repository'){
-      git 'https://github.com/tapansirol/jpet-store'
+      git 'https://github.com/tapansirol/jpetstore-demo01'
   }
 
   stage ('Build') {
