@@ -34,46 +34,7 @@ stage ("Appscan"){
 
 	//appscan application: '17969f05-19dd-4143-b7e2-c52a3336db18', credentials: 'Credential for ASOC', failBuild: true, failureConditions: [failure_condition(failureType: 'high', threshold: 20)], name: 'test_07012019', scanner: static_analyzer(hasOptions: false, target: '/var/jenkins_home/jobs/jpetstore'), type: 'Static Analyzer', wait: true
  }
-  stage('Publish Artificats to UCD'){
-   step([$class: 'UCDeployPublisher',
-        siteName: 'ucd-server',
-        component: [
-            $class: 'com.urbancode.jenkins.plugins.ucdeploy.VersionHelper$VersionBlock',
-            componentName: 'jenkins-jpet-component',
-            createComponent: [
-                $class: 'com.urbancode.jenkins.plugins.ucdeploy.ComponentHelper$CreateComponentBlock',
-                componentTemplate: '',
-                componentApplication: 'JPetStore'
-            ],
-            delivery: [
-                $class: 'com.urbancode.jenkins.plugins.ucdeploy.DeliveryHelper$Push',
-                pushVersion: 'ver${BUILD_NUMBER}',
-                // baseDir: '/var/jenkins_home/workspace/JPetStore/target',
-		baseDir: '/var/jenkins_home/workspace/jpetstore/target',
-                fileIncludePatterns: '*.war',
-                fileExcludePatterns: '',
-               // pushProperties: 'jenkins.server=Jenkins-app\njenkins.reviewed=false',
-                pushDescription: 'Pushed from Jenkins'
-            ]
-        ]
-    ])
-	step([$class: 'UCDeployPublisher',
-        	siteName: 'ucd-server',
-        	deploy: [
-            	$class: 'com.urbancode.jenkins.plugins.ucdeploy.DeployHelper$DeployBlock',
-            	deployApp: 'JPetStore',
-            	deployEnv: 'JPetStore_Dev',
-            	deployProc: 'Deploy-JPetStore',
-            	createProcess: [
-                	$class: 'com.urbancode.jenkins.plugins.ucdeploy.ProcessHelper$CreateProcessBlock',
-                	processComponent: 'Deploy'
-            	],
-            	deployVersions: 'jenkins-jpet-component:ver${BUILD_NUMBER}',
-		//deployVersions: 'SNAPSHOT=Base Configuration',
-            	deployOnlyChanged: false
-        ]
-    ])
- }
+
  
 stage ('HCL One Test') {
 	sleep 25
