@@ -2,14 +2,7 @@ node{
   stage ('cloning the repository'){
       git 'https://github.com/tapansirol/jpet-store'
   }
-	
-  //stage('SonarQube analysis') {
-    // requires SonarQube Scanner 2.8+
-    //def scannerHome = tool 'sonar-new';
-    //withSonarQubeEnv('My SonarQube Server') {
-     // sh "${scannerHome}/bin/sonar-scanner"
-    //}
-  //}
+
   stage ('Build') {
       withMaven(jdk: 'JDK_local', maven: 'MVN_Local') {
       sh 'mvn clean package'
@@ -47,8 +40,8 @@ stage ("Appscan"){
             delivery: [
                 $class: 'com.urbancode.jenkins.plugins.ucdeploy.DeliveryHelper$Push',
                 pushVersion: 'ver${BUILD_NUMBER}',
-               // baseDir: '/var/jenkins_home/workspace/JPetStore/target',
-		baseDir: '/var/jenkins_home/workspace/jpetstore/target',
+                baseDir: '/var/jenkins_home/workspace/JPetStore/target',
+		// baseDir: '/var/jenkins_home/workspace/jpetstore/target',
                 fileIncludePatterns: '*.war',
                 fileExcludePatterns: '',
                // pushProperties: 'jenkins.server=Jenkins-app\njenkins.reviewed=false',
