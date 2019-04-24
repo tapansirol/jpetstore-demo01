@@ -5,15 +5,15 @@ node{
 
   stage ('Build') {
       withMaven(jdk: 'JDK_local', maven: 'MVN_Local') {
-      sh 'mvn clean package'
+      bat 'mvn clean package'
     }
   }
 	
 	stage('SonarQube Analysis'){
 		def mvnHome = tool name : 'MVN_Local', type:'maven'
 		withSonarQubeEnv('sonar-server'){
-			 //"SONAR_USER_HOME=/opt/bitnami/jenkins/.sonar ${mvnHome}/bin/mvn sonar:sonar"
-			sh  "${mvnHome}/bin/mvn sonar:sonar"
+			 "SONAR_USER_HOME=/opt/bitnami/jenkins/.sonar ${mvnHome}/bin/mvn sonar:sonar"
+			//sh  "${mvnHome}/bin/mvn sonar:sonar"
 		}
 	}
 stage ("Appscan"){
