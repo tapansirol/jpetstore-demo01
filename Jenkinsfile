@@ -29,6 +29,7 @@ stage ("Appscan"){
 	sleep 40
 	//appscan application: '17969f05-19dd-4143-b7e2-c52a3336db18', credentials: 'Credential for ASOC', failBuild: true, failureConditions: [failure_condition(failureType: 'high', threshold: 20)], name: 'test_07012019', scanner: static_analyzer(hasOptions: false, target: '/var/jenkins_home/jobs/jpetstore'), type: 'Static Analyzer', wait: true
 	//appscan application: '46265443-de81-4bb6-b496-61370209d1df', credentials: 'HCL ASOC Credentials', failBuild: true, failureConditions: [failure_condition(failureType: 'high', threshold: 20)], name: '46265443-de81-4bb6-b496-61370209d1df7394', scanner: static_analyzer(hasOptions: false, target: '/var/jenkins_home/jobs/jpetstore'), type: 'Static Analyzer'
+	appscan application: '84963f4f-0cf4-4262-9afe-3bd7c0ec3942', credentials: 'HCL ASoC Dev', failBuild: true, failureConditions: [failure_condition(failureType: 'high', threshold: 20)], name: '84963f4f-0cf4-4262-9afe-3bd7c0ec39428270', scanner: static_analyzer(hasOptions: false, target: '/var/jenkins_home/jobs/jpetstore'), type: 'Static Analyzer'
  }
   stage('Publish Artificats to UCD'){
    step([$class: 'UCDeployPublisher',
