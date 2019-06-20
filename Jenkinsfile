@@ -1,4 +1,4 @@
-def label = "mypod-${UUID.randomUUID().toString()}"
+def label = "mypod-$JOB_NAME"
 podTemplate(label: label) {
 	 node(label) {
   stage ('cloning the repository'){
