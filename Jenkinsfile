@@ -1,6 +1,6 @@
 def label = "mypod-${UUID.randomUUID().toString()}"
 podTemplate(label: label) {
-	node{
+	 node(label) {
   stage ('cloning the repository'){
       git 'https://github.com/tapansirol/jpet-store'
   }
