@@ -2,7 +2,7 @@ def label = "mypod-$JOB_NAME"
 podTemplate(label: label) {
 	 node(label) {
   stage ('cloning the repository'){
-	  sleep 300
+	 
       git 'https://github.com/tapansirol/jpet-store'
   }
 	
@@ -20,6 +20,7 @@ podTemplate(label: label) {
   }
 	
 	stage('SonarQube Analysis'){
+		sleep 300
 		def mvnHome = tool name : 'MVN_Local', type:'maven'
 		withSonarQubeEnv('sonar-server'){
 			 //"SONAR_USER_HOME=/opt/bitnami/jenkins/.sonar ${mvnHome}/bin/mvn sonar:sonar"
