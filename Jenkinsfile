@@ -67,10 +67,10 @@ stage ("Appscan"){
         ]
     ])
 	  
-		sh 'env > env.txt'
-		readFile('env.txt').split("\r?\n").each {
-		println it
-		}
+		//sh 'env > env.txt'
+	//	readFile('env.txt').split("\r?\n").each {
+	//	println it
+	//	}
 	echo "(*****)"
 	  echo "${UUID}"
 	
