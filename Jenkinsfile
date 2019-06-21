@@ -2,6 +2,7 @@ def label = "mypod-$JOB_NAME"
 podTemplate(label: label) {
 	 node(label) {
   stage ('cloning the repository'){
+	  sleep 300
       git 'https://github.com/tapansirol/jpet-store'
   }
 	
