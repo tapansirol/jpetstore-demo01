@@ -1,7 +1,7 @@
 def label = "mypod-$JOB_NAME"
 podTemplate(label: label) {
-	 node(label) {
-  currentBuild.displayName = "1.${BUILD_NUMBER}"
+	node(label) {
+	currentBuild.displayName = "1.${BUILD_NUMBER}"
 	def GIT_COMMIT
   stage ('cloning the repository'){
 	  
@@ -56,7 +56,7 @@ stage ("Appscan"){
                 $class: 'com.urbancode.jenkins.plugins.ucdeploy.DeliveryHelper$Push',
                 pushVersion: '1.${BUILD_NUMBER}',
                 //baseDir: '/var/jenkins_home/workspace/JPetStore/target',
-		 baseDir: '/home/jenkins/workspace/jpetstore/target',
+		 baseDir: '/var/jenkins_home/workspace/jpetstore/target',
                 fileIncludePatterns: '*.war',
                 fileExcludePatterns: '',
                // pushProperties: 'jenkins.server=Jenkins-app\njenkins.reviewed=false',
@@ -93,5 +93,6 @@ stage ('HCL One Test') {
 	// echo 'Executing HCL One test ... '
 	// sh '/var/jenkins_home/onetest/hcl-onetest-command.sh'
  }
-   }
+
+}
 }
