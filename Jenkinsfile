@@ -20,7 +20,7 @@ podTemplate(label: label) {
   }
 	
 	stage('SonarQube Analysis'){
-		sleep 300
+		
 		def mvnHome = tool name : 'MVN_Local', type:'maven'
 		withSonarQubeEnv('sonar-server'){
 			 //"SONAR_USER_HOME=/opt/bitnami/jenkins/.sonar ${mvnHome}/bin/mvn sonar:sonar"
