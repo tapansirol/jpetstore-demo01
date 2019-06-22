@@ -1,6 +1,4 @@
-def label = "mypod-$JOB_NAME"
-podTemplate(label: label) {
-	node(label) {
+node {
 	currentBuild.displayName = "1.${BUILD_NUMBER}"
 	def GIT_COMMIT
   stage ('cloning the repository'){
@@ -99,4 +97,4 @@ stage ('HCL One Test') {
  }
 
 }
-}
+
